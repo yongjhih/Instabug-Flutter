@@ -79,9 +79,9 @@ public class InstabugFlutterPlugin implements MethodCallHandler {
         for (Method method : methods) {
             if (callMethod.equals(method.getName())) {
                 isImplemented = true;
-                ArrayList<Object> tempParamValues = new ArrayList<>();
+                List<Object> tempParamValues = new ArrayList<>();
                 if (call.arguments != null) {
-                    tempParamValues = (ArrayList<Object>) call.arguments;
+                    tempParamValues = (List<Object>) call.arguments;
                 }
                 Object[] paramValues = tempParamValues.toArray();
                 try {
@@ -108,7 +108,7 @@ public class InstabugFlutterPlugin implements MethodCallHandler {
      * @param invocationEvents invocationEvents The events that invoke
      *                         the SDK's UI.
      */
-    public void start(Application application, String token, ArrayList<String> invocationEvents) {
+    public void start(Application application, String token, List<String> invocationEvents) {
         InstabugInvocationEvent[] invocationEventsArray = new InstabugInvocationEvent[invocationEvents.size()];
         for (int i = 0; i < invocationEvents.size(); i++) {
             String key = invocationEvents.get(i);
@@ -245,7 +245,7 @@ public class InstabugFlutterPlugin implements MethodCallHandler {
      *
      * @param tags An array of tags to append to current tags.
      */
-    public void appendTags(ArrayList<String> tags) {
+    public void appendTags(List<String> tags) {
         Instabug.addTags(tags.toArray(new String[0]));
     }
 
@@ -261,7 +261,7 @@ public class InstabugFlutterPlugin implements MethodCallHandler {
      *
      * @return An array of tags.
      */
-    public ArrayList<String> getTags() {
+    public List<String> getTags() {
         return Instabug.getTags();
     }
 
@@ -515,9 +515,9 @@ public class InstabugFlutterPlugin implements MethodCallHandler {
     /**
      * Sets the event used to invoke Instabug SDK
      *
-     * @param invocationEvents ArrayList of invocation events
+     * @param invocationEvents List of invocation events
      */
-    public void setInvocationEvents(final  ArrayList<String> invocationEvents) {
+    public void setInvocationEvents(final  List<String> invocationEvents) {
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
@@ -550,7 +550,7 @@ public class InstabugFlutterPlugin implements MethodCallHandler {
    * Sets what type of reports, bug or feedback, should be invoked.
    * @param {array} reportTypes - Array of reportTypes
    */
-    public void setReportTypes(final ArrayList<String> reportTypes) {
+    public void setReportTypes(final List<String> reportTypes) {
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
@@ -664,7 +664,7 @@ public class InstabugFlutterPlugin implements MethodCallHandler {
      */
     public void getAvailableSurveys() {
         List<Survey> availableSurveys = Surveys.getAvailableSurveys();
-        ArrayList<String> result = new ArrayList<>();
+        List<String> result = new ArrayList<>();
         for (Survey obj : availableSurveys) {
             result.add(obj.getTitle());
         }
